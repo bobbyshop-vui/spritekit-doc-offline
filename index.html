@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài liệu học Sprite Kit</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Tài liệu học Sprite Kit</h1>
+        <p class="lead text-center">Một hướng dẫn toàn diện với 14 bài học.</p>
+
+        <!-- Mục lục -->
+        <h3>Mục lục</h3>
+        <ul class="list-group mb-4">
+            <li class="list-group-item"><a href="#lesson1">Bài 1: Thiết lập Dự án Sprite Kit</a></li>
+            <li class="list-group-item"><a href="#lesson2">Bài 2: Tạo và Hiển Thị Sprites</a></li>
+            <li class="list-group-item"><a href="#lesson3">Bài 3: Di Chuyển Sprites</a></li>
+            <li class="list-group-item"><a href="#lesson4">Bài 4: Thêm Hành Động</a></li>
+            <li class="list-group-item"><a href="#lesson5">Bài 5: Tạo Hiệu Ứng Âm Thanh</a></li>
+            <li class="list-group-item"><a href="#lesson6">Bài 6: Xử Lý Va Chạm</a></li>
+            <li class="list-group-item"><a href="#lesson7">Bài 7: Thêm Vật Lý vào Sprites</a></li>
+            <li class="list-group-item"><a href="#lesson8">Bài 8: Sử Dụng Camera</a></li>
+            <li class="list-group-item"><a href="#lesson9">Bài 9: Tạo Menu và Điểm Số</a></li>
+            <li class="list-group-item"><a href="#lesson10">Bài 10: Lưu Trữ và Tải Điểm Số Cao</a></li>
+            <li class="list-group-item"><a href="#lesson11">Bài 11: Tạo Kẻ Thù và AI</a></li>
+            <li class="list-group-item"><a href="#lesson12">Bài 12: Tạo Nhiệm Vụ hoặc Mục Tiêu</a></li>
+            <li class="list-group-item"><a href="#lesson13">Bài 13: Tạo Màn Hình Kết Thúc Trò Chơi</a></li>
+            <li class="list-group-item"><a href="#lesson14">Bài 14: Tạo Các Hiệu Ứng Hình Ảnh</a></li>
+        </ul>
+
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item" id="lesson1">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Bài 1: Thiết lập Dự án Sprite Kit
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Tạo một dự án Sprite Kit đơn giản trong Xcode.<br>
+                        <strong>Hướng dẫn:</strong> Mở Xcode và chọn "Create a new Xcode project". Chọn "Game" và nhấn "Next". Chọn "SpriteKit" trong mục "Game Technology". Đặt tên cho dự án và nhấn "Create".<br>
+                        <strong>Giải thích:</strong> Đây là bước đầu tiên để tạo ra một trò chơi sử dụng Sprite Kit.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson2">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Bài 2: Tạo và Hiển Thị Sprites
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Thêm một sprite vào cảnh.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>import SpriteKit
+
+class GameScene: SKScene {
+    override func didMove(to view: SKView) {
+        let player = SKSpriteNode(imageNamed: "player")
+        player.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        addChild(player)
+    }
+}</code></pre>
+                        <strong>Giải thích:</strong> Trong phương thức `didMove(to:)`, bạn tạo một sprite mới và thêm nó vào cảnh.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson3">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Bài 3: Di Chuyển Sprites
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Di chuyển sprite khi người dùng chạm vào màn hình.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    if let touch = touches.first {
+        let location = touch.location(in: self)
+        let player = SKSpriteNode(imageNamed: "player")
+        player.position = location
+        addChild(player)
+    }
+}</code></pre>
+                        <strong>Giải thích:</strong> Phương thức `touchesBegan` được gọi khi người dùng chạm vào màn hình, và sprite mới sẽ được thêm vào vị trí chạm.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson4">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Bài 4: Thêm Hành Động
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Thêm hành động cho sprite.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>let moveAction = SKAction.move(to: CGPoint(x: 100, y: 100), duration: 1.0)
+player.run(moveAction)</code></pre>
+                        <strong>Giải thích:</strong> Hành động `moveAction` di chuyển sprite đến vị trí (100, 100) trong 1 giây.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson5">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Bài 5: Tạo Hiệu Ứng Âm Thanh
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Thêm âm thanh khi sprite di chuyển.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>let soundAction = SKAction.playSoundFileNamed("move.mp3", waitForCompletion: false)
+player.run(soundAction)</code></pre>
+                        <strong>Giải thích:</strong> Hành động `soundAction` phát âm thanh từ tệp "move.mp3" khi sprite di chuyển.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson6">
+                <h2 class="accordion-header" id="headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Bài 6: Xử Lý Va Chạm
+                    </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Xử lý va chạm giữa các sprite.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>override func didBegin(_ contact: SKPhysicsContact) {
+    if contact.bodyA.categoryBitMask == playerCategory && contact.bodyB.categoryBitMask == enemyCategory {
+        // Xử lý va chạm
+    }
+}</code></pre>
+                        <strong>Giải thích:</strong> Phương thức này được gọi khi có va chạm giữa các sprite và bạn có thể xử lý nó theo cách mong muốn.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson7">
+                <h2 class="accordion-header" id="headingSeven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        Bài 7: Thêm Vật Lý vào Sprites
+                    </button>
+                </h2>
+                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Thêm vật lý cho sprite.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
+player.physicsBody?.isDynamic = true</code></pre>
+                        <strong>Giải thích:</strong> Bạn tạo một `physicsBody` cho sprite để cho phép nó tương tác với vật lý trong cảnh.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson8">
+                <h2 class="accordion-header" id="headingEight">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        Bài 8: Sử Dụng Camera
+                    </button>
+                </h2>
+                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Sử dụng camera để theo dõi sprite.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>let cameraNode = SKCameraNode()
+self.camera = cameraNode
+addChild(cameraNode)</code></pre>
+                        <strong>Giải thích:</strong> Camera sẽ theo dõi sprite và bạn có thể di chuyển camera cùng với sprite.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson9">
+                <h2 class="accordion-header" id="headingNine">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                        Bài 9: Tạo Menu và Điểm Số
+                    </button>
+                </h2>
+                <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Tạo một menu cho trò chơi và hiển thị điểm số.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>let scoreLabel = SKLabelNode(text: "Điểm: 0")
+scoreLabel.position = CGPoint(x: 100, y: self.size.height - 50)
+addChild(scoreLabel)</code></pre>
+                        <strong>Giải thích:</strong> Bạn có thể sử dụng `SKLabelNode` để hiển thị điểm số trên màn hình.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson10">
+                <h2 class="accordion-header" id="headingTen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                        Bài 10: Lưu Trữ và Tải Điểm Số Cao
+                    </button>
+                </h2>
+                <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Lưu trữ và tải điểm số cao từ UserDefaults.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>UserDefaults.standard.set(highScore, forKey: "highScore")</code></pre>
+                        <strong>Giải thích:</strong> Bạn có thể lưu trữ điểm số cao bằng UserDefaults và tải nó khi cần.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson11">
+                <h2 class="accordion-header" id="headingEleven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                        Bài 11: Tạo Kẻ Thù và AI
+                    </button>
+                </h2>
+                <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Tạo kẻ thù và thêm AI cho nó.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>let enemy = SKSpriteNode(imageNamed: "enemy")
+enemy.position = CGPoint(x: 200, y: 200)
+let moveEnemy = SKAction.move(to: player.position, duration: 2.0)
+enemy.run(moveEnemy)</code></pre>
+                        <strong>Giải thích:</strong> Kẻ thù sẽ di chuyển đến vị trí của người chơi trong thời gian 2 giây.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson12">
+                <h2 class="accordion-header" id="headingTwelve">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                        Bài 12: Tạo Nhiệm Vụ hoặc Mục Tiêu
+                    </button>
+                </h2>
+                <div id="collapseTwelve" class="accordion-collapse collapse" aria-labelledby="headingTwelve" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Tạo một nhiệm vụ cho người chơi hoàn thành.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>let missionLabel = SKLabelNode(text: "Hoàn thành 3 nhiệm vụ!")
+missionLabel.position = CGPoint(x: size.width / 2, y: size.height - 100)
+addChild(missionLabel)</code></pre>
+                        <strong>Giải thích:</strong> Bạn có thể sử dụng `SKLabelNode` để hiển thị nhiệm vụ cho người chơi.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson13">
+                <h2 class="accordion-header" id="headingThirteen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+                        Bài 13: Tạo Màn Hình Kết Thúc Trò Chơi
+                    </button>
+                </h2>
+                <div id="collapseThirteen" class="accordion-collapse collapse" aria-labelledby="headingThirteen" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Tạo màn hình kết thúc trò chơi.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>let gameOverLabel = SKLabelNode(text: "Trò chơi kết thúc!")
+gameOverLabel.position = CGPoint(x: size.width / 2, y: size.height / 2)
+addChild(gameOverLabel)</code></pre>
+                        <strong>Giải thích:</strong> Màn hình kết thúc có thể hiển thị thông báo khi trò chơi kết thúc.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson14">
+                <h2 class="accordion-header" id="headingFourteen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
+                        Bài 14: Tạo Các Hiệu Ứng Hình Ảnh
+                    </button>
+                </h2>
+                <div id="collapseFourteen" class="accordion-collapse collapse" aria-labelledby="headingFourteen" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Tạo các hiệu ứng hình ảnh cho sprite.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>let explosion = SKEmitterNode(fileNamed: "explosion.sks")!
+explosion.position = player.position
+addChild(explosion)</code></pre>
+                        <strong>Giải thích:</strong> Bạn có thể sử dụng SKEmitterNode để tạo ra các hiệu ứng hình ảnh như nổ.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson15">
+                <h2 class="accordion-header" id="headingFifteen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFifteen" aria-expanded="false" aria-controls="collapseFifteen">
+                        Bài 15: Thêm Âm Thanh vào Trò Chơi
+                    </button>
+                </h2>
+                <div id="collapseFifteen" class="accordion-collapse collapse" aria-labelledby="headingFifteen" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Thêm âm thanh vào trò chơi.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>let soundAction = SKAction.playSoundFileNamed("sound.mp3", waitForCompletion: false)
+run(soundAction)</code></pre>
+                        <strong>Giải thích:</strong> Bạn có thể sử dụng `SKAction` để phát âm thanh trong trò chơi.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson16">
+                <h2 class="accordion-header" id="headingSixteen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSixteen" aria-expanded="false" aria-controls="collapseSixteen">
+                        Bài 16: Tối Ưu Hóa Hiệu Suất
+                    </button>
+                </h2>
+                <div id="collapseSixteen" class="accordion-collapse collapse" aria-labelledby="headingSixteen" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Tối ưu hóa hiệu suất trò chơi.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>self.shouldRasterize = true</code></pre>
+                        <strong>Giải thích:</strong> Bạn có thể tối ưu hóa hiệu suất bằng cách sử dụng rasterization.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item" id="lesson17">
+                <h2 class="accordion-header" id="headingSeventeen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeventeen" aria-expanded="false" aria-controls="collapseSeventeen">
+                        Bài 17: Tích Hợp Game Center
+                    </button>
+                </h2>
+                <div id="collapseSeventeen" class="accordion-collapse collapse" aria-labelledby="headingSeventeen" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>Mục tiêu:</strong> Tích hợp Game Center vào trò chơi.<br>
+                        <strong>Mã:</strong>
+                        <pre><code>GKAchievement.report(<#GKAchievement#>)</code></pre>
+                        <strong>Giải thích:</strong> Bạn có thể tích hợp Game Center để theo dõi thành tích và điểm số cao của người chơi.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
